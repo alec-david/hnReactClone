@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import { newStories } from '../Stores/NewStoriesStore';
+import { bestStories } from '../Stores/BestStoriesStore';
 import { Link  } from 'react-router-dom';
 
 @observer
-class NewStories extends Component {
+class BestStories extends Component {
 
   goToNextPage() {
-    newStories.getNewStoriesForNextPage();
+    bestStories.getStoriesForNextPage();
   }
 
   hideStory(id) {
@@ -41,7 +41,7 @@ class NewStories extends Component {
   }
 
   render() {
-    const storyList = newStories.json.map( story => 
+    const storyList = bestStories.json.map( story => 
       <li className='StoryItem' key={story.id}>
         <a href={story.url}><strong>{story.title}</strong></a> {this.simplifyURL(story.url)}<br/>
         {story.score} points by {story.by} { ' ' }
@@ -62,4 +62,4 @@ class NewStories extends Component {
   }
 }
 
-export default NewStories;
+export default BestStories;
