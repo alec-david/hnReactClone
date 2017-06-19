@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import { stories } from '../Stores/StoriesStore';
+import { topstories } from '../Stores/StoriesStore';
 import { Link  } from 'react-router-dom';
 
 @observer
 class Stories extends Component {
 
   goToNextPage() {
-    stories.getStoriesForNextPage();
+    topstories.getStoriesForNextPage();
   }
 
   hideStory(id) {
@@ -42,7 +42,7 @@ class Stories extends Component {
   }
 
   render() {
-    const storyList = stories.json.map( story => 
+    const storyList = topstories.json.map( story => 
       <li className='StoryItem' key={story.id}>
         <a href={story.url}><strong>{story.title}</strong></a> {this.simplifyURL(story.url)}<br/>
         {story.score} points by {story.by} { ' ' }

@@ -7,18 +7,18 @@ let numStories = 30;
 class Stories {
   @observable stories = [];
 
-  constructor() {
-    this.getStoriesForNextPage();
+  constructor(type) {
+    this.getStoriesForNextPage(type);
   }
 
   @computed get json() {
     return toJS(this.stories);
   };
 
-  getStoriesForNextPage() {
+  getStoriesForNextPage(type) {
     pageNum++;
     for (var i = pageNum*numStories; i < numStories*(pageNum+1); i++) {
-      fb.topstories.child(i).once('value', snap => {
+      fb.root.child(type+'stories').child(i).once('value', snap => {
         let id = snap.val();
 
         let itemRef = fb.root.child('item').child(id);
@@ -33,5 +33,7 @@ class Stories {
   }
 }
 
-const stories = new Stories();
-export {stories};
+const topstories = new Stories('top');
+const newstories = new Stories('new');
+const beststories = new Stories('best');
+export {topstories, newstories, beststories};
