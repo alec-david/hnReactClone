@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import { Route, Link  } from 'react-router-dom';
+import { topstories, newstories, beststories, show } from './Stores/StoriesStore';
 
 import Ask from './Components/Ask';
-import BestStories from './Components/BestStories';
 import Jobs from './Components/Jobs';
 import NewComments from './Components/NewComments';
-import NewStories from './Components/NewStories';
-import Show from './Components/Show';
 import Stories from './Components/Stories';
 import StoryComments from './Components/StoryComments';
 
@@ -24,16 +22,16 @@ class App extends Component {
         
         <hr/>
 
-        <Route exact path="/" render={()=><Stories store={this.store} />}/>
-        <Route path="/new" component={NewStories}/>
-        <Route path="/best" component={BestStories}/>
+        {/*<Route exact path="/" render={()=><Stories store={this.store} />}/>*/}
+        <Route exact path="/" render={()=><Stories stories={topstories} />}/>
+        <Route path="/new" render={()=><Stories stories={newstories} />}/>
+        <Route path="/best" render={()=><Stories stories={beststories} />}/>
         <Route path="/comments" component={NewComments}/>
-        <Route path="/show" component={Show}/>
+        <Route path="/show" render={()=><Stories stories={show} />}/>
         <Route path="/ask" component={Ask}/>
         <Route path="/jobs" component={Jobs}/>
         <Route path="/story/:id" component={StoryComments}/>
         {/*<Route path="/job/:id" component={}/>*/}
-        {/*<Page submissions={this.state.submissions} deleteSubmission={this.deleteSubmission.bind(this)} />*/}
       
       </div>
     )
