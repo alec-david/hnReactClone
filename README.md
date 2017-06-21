@@ -6,5 +6,5 @@
 + Get comments on story working
 + Get Ask and Jobs section formatted correctly (they look different than normal story)
 + Styling...
-~~Refactor how stores work for each component - top, new, best are all working the exact same way so must be a way to create an abstraction for that~~
-~~Refactor firebase service - allow to append type to the root and then just use that (eg. root.child(type) where type = 'topstories' or 'newstories' etc)~~
++ ~~Refactor how stores work for each component - top, new, best are all working the exact same way so must be a way to create an abstraction for that~~
++ ~~Refactor firebase service - allow to append type to the root and then just use that (eg. root.child(type) where type = 'topstories' or 'newstories' etc)~~
