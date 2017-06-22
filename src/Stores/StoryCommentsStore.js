@@ -5,7 +5,7 @@ class StoryCommentsStore {
   @observable comments = [];
 
   constructor() {
-    console.log('asuh');
+    //console.log('asuh');
   }
 
   @computed get json() {

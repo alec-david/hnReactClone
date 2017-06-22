@@ -13,6 +13,19 @@ class Stories extends Component {
     console.log(id);
   }
 
+  //check if url is blank (if it's an ask post)
+  checkURL(story) {
+    if (!story.url) {
+      return (
+        <Link to={this.generateStoryIdLink(story.id)}><strong>{story.title}</strong></Link>
+      );
+    } else {
+      return (
+        <a href={story.url}><strong>{story.title}</strong></a>
+      );
+    }
+  }
+
   simplifyURL(urlStr) {
     let expression = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/im;
     let regex = new RegExp(expression);
@@ -44,7 +57,7 @@ class Stories extends Component {
     const stories = this.props.stories;
     const storyList = stories.json.map( story => 
       <li className='StoryItem' key={story.id}>
-        <a href={story.url}><strong>{story.title}</strong></a> {this.simplifyURL(story.url)}<br/>
+        {this.checkURL(story)} {this.simplifyURL(story.url)}<br/>
         {story.score} points by {story.by} { ' ' }
         {this.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
         <a href='#' onClick={this.hideStory.bind(this, story.id)}>hide</a> { ' ' } | { ' ' }
@@ -57,7 +70,7 @@ class Stories extends Component {
         <ol>
           {storyList}
         </ol>
-        {/*<button onClick={this.goToNextPage.bind(this,topstories)}>More</button>*/}
+        <button onClick={this.goToNextPage.bind(this,stories)}>More</button>
       </div>
     )
   }
