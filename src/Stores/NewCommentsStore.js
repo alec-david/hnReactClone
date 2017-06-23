@@ -16,37 +16,29 @@ class NewComments {
     return toJS(this.comments);
   };
 
-  getNewComments(maxId) {
+  getNewComments() {
     this.pageNum++;
     fb.root.child('maxitem').once('value', snap => {
       console.log(snap.val());
       let maxId = snap.val();
-      // let commentCtr = 0;
-      // while (commentCtr<30) {
-      //   let itemRef = fb.root.child('item').child(maxId);
-      //   itemRef.once('value', snap => {
-      //     let item = snap.val();
-      //     if (item.type === 'comment') {
-      //       this.comments.push(item);
-      //       commentCtr++;
-      //     }
-      //   })
-      //   maxId--;
-      // }
-      // for (var i = this.pageNum*numComments; i < numComments*(this.pageNum+1); i++) {
-      //   let itemRef = fb.root.child('item').child(maxId);
-      //   itemRef.once('value', snap => {
-      //     let item = snap.val();
-      //     // console.log(item);
-      //     if (item.type === 'comment') {
-      //       this.comments.push(item);
-      //     } else {
-      //       i--;
-      //       console.log('asuh');
-      //     }
-      //   });
-      //   maxId--;
-      // }
+      for (var i = this.pageNum*numComments; i < numComments*(this.pageNum+1); i++) {
+        let itemRef = fb.root.child('item').child(maxId);
+        itemRef.once('value', snap => {
+          let item = snap.val();
+          if (item.type === 'comment') {
+            this.comments.push(item);
+            let parentRef = fb.root.child('item').child(item.parent);
+            console.log(item.parent);
+            parentRef.once('value', snapshot => {
+              console.log(snapshot.val());
+            })
+          } else {
+            i--;
+            console.log(i);
+          }
+        });
+        maxId--;
+      }
     })
   }
 }

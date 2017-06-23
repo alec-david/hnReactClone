@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Route, Link  } from 'react-router-dom';
 import { topstories, newstories, beststories, ask, show } from './Stores/StoriesStore';
-
 import { newcomments } from './Stores/NewCommentsStore';
 
 import Jobs from './Components/Jobs';
@@ -11,6 +10,7 @@ import StoryComments from './Components/StoryComments';
 
 class App extends Component {
   render() {
+
     return (
       <div className="App">
         <Link to="/">Hacker News</Link> | { ' ' }
@@ -23,7 +23,6 @@ class App extends Component {
         
         <hr/>
 
-        {/*<Route exact path="/" render={()=><Stories store={this.store} />}/>*/}
         <Route exact path="/" render={()=><Stories stories={topstories} />}/>
         <Route path="/new" render={()=><Stories stories={newstories} />}/>
         <Route path="/best" render={()=><Stories stories={beststories} />}/>

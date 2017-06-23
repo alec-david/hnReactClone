@@ -25,21 +25,21 @@ class NewComments extends Component {
   render() {
     const comments = this.props.comments;
     const commentList = comments.json.map( comment => 
-      <li className='CommentItem' key={comment.id}>
+      <div className='CommentItem' key={comment.id}>
         {comment.by} { ' ' }
         {this.getTimeSinceSubmission(comment.time)} ago { ' ' }
         | { ' ' } <Link to={this.generateStoryIdLink(comment.id)}>parent</Link> { ' ' }
         | { ' ' } on:  <br/>
         <span>{comment.text}</span>
         <br/>
-      </li>
+      </div>
     )
 
     return (
       <div>
-        <ol>
+        {/*<ol>*/}
           {commentList}
-        </ol>
+        {/*</ol>*/}
         <button>More</button>
       </div>
     )

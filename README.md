@@ -8,3 +8,7 @@
 + Styling...
 + ~~Refactor how stores work for each component - top, new, best are all working the exact same way so must be a way to create an abstraction for that~~
 + ~~Refactor firebase service - allow to append type to the root and then just use that (eg. root.child(type) where type = 'topstories' or 'newstories' etc)~~
+
+##### Stuff to look into
++ Redux instead of mobx
++ Try pulling down json of data instead of pulling it down 1 by 1... (shown here briefly https://github.com/mking/react-hn)
