@@ -55,13 +55,14 @@ class Stories extends Component {
 
   render() {
     const stories = this.props.stories;
+    // console.log(stories.json);
     const storyList = stories.json.map( story => 
-      <li className='StoryItem' key={story.id}>
-        {this.checkURL(story)} {this.simplifyURL(story.url)}<br/>
-        {story.score} points by {story.by} { ' ' }
-        {this.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
-        <a href='#' onClick={this.hideStory.bind(this, story.id)}>hide</a> { ' ' } | { ' ' }
-        <Link to={this.generateStoryIdLink(story.id)}>{story.descendants} comments</Link> <br/>
+      <li className='StoryItem' key={story.data.id}>
+        {this.checkURL(story.data)} {this.simplifyURL(story.data.url)}<br/>
+        {story.data.score} points by {story.data.by} { ' ' }
+        {this.getTimeSinceSubmission(story.data.time)} ago { ' ' } | { ' ' }
+        <a href='#' onClick={this.hideStory.bind(this, story.data.id)}>hide</a> { ' ' } | { ' ' }
+        <Link to={this.generateStoryIdLink(story.data.id)}>{story.data.descendants} comments</Link> <br/>
       </li>
     )
 

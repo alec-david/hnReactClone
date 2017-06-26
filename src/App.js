@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Route, Link  } from 'react-router-dom';
 import { topstories, newstories, beststories, ask, show } from './Stores/StoriesStore';
-import { newcomments } from './Stores/NewCommentsStore';
 
 import Jobs from './Components/Jobs';
 import NewComments from './Components/NewComments';
@@ -26,7 +25,8 @@ class App extends Component {
         <Route exact path="/" render={()=><Stories stories={topstories} />}/>
         <Route path="/new" render={()=><Stories stories={newstories} />}/>
         <Route path="/best" render={()=><Stories stories={beststories} />}/>
-        <Route path="/comments" render={()=><NewComments comments={newcomments} />}/>
+        {/*<Route path="/comments" render={()=><NewComments comments={newcomments} />}/>*/}
+        <Route path="/comments" component={NewComments}/>
         <Route path="/show" render={()=><Stories stories={show} />}/>
         <Route path="/ask" render={()=><Stories stories={ask} />}/>
         <Route path="/jobs" component={Jobs}/>

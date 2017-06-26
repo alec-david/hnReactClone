@@ -1,45 +1,52 @@
 import { observable, computed, toJS } from 'mobx';
-import { fb } from '../Firebase/firebaseService';
+import axios from 'axios';
 
 let numComments = 30;
+let fbURL = 'https://hacker-news.firebaseio.com/v0/';
+let fbURLItem = fbURL + 'item/';
 
 class NewComments {
-  pageNum = -1;
+  maxItemId;
 
   @observable comments = [];
 
   constructor() {
-    this.getNewComments();
+    this.loadInitialComments();
   }
 
   @computed get json() {
     return toJS(this.comments);
   };
 
-  getNewComments() {
-    this.pageNum++;
-    fb.root.child('maxitem').once('value', snap => {
-      console.log(snap.val());
-      let maxId = snap.val();
-      for (var i = this.pageNum*numComments; i < numComments*(this.pageNum+1); i++) {
-        let itemRef = fb.root.child('item').child(maxId);
-        itemRef.once('value', snap => {
-          let item = snap.val();
-          if (item.type === 'comment') {
-            this.comments.push(item);
-            let parentRef = fb.root.child('item').child(item.parent);
-            console.log(item.parent);
-            parentRef.once('value', snapshot => {
-              console.log(snapshot.val());
+  loadInitialComments() {
+    axios
+      .get(fbURL + 'maxitem.json')
+      .then(maxItem => {
+        console.log(maxItem.data);
+        for (var i = maxItem.data; i > maxItem.data-numComments; i--) {
+          axios
+            .get(fbURLItem + i + '.json')
+            .then(comment => {
+              if (comment.data.type === 'comment') {
+                this.comments.push(comment);
+              }
             })
-          } else {
-            i--;
-            console.log(i);
+        }
+        this.maxItemId = maxItem.data-numComments;
+      })
+  }
+
+  loadMoreComments() {
+    for (var i = this.maxItemId; i > (this.maxItemId-numComments); i--) {
+      axios
+        .get(fbURLItem + i + '.json')
+        .then(comment => {
+          if (comment.data.type === 'comment') {
+            this.comments.push(comment);
           }
-        });
-        maxId--;
-      }
-    })
+        })
+    }
+    this.maxItemId -= numComments;
   }
 }
 

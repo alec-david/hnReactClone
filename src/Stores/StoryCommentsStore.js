@@ -1,5 +1,4 @@
 import { observable, computed, toJS } from 'mobx';
-import { fb } from '../Firebase/firebaseService';
 
 class StoryCommentsStore {
   @observable comments = [];

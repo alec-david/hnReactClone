@@ -14,6 +14,19 @@ class Jobs extends Component {
     console.log(id);
   }
 
+  //check if url is blank (if it's an ask post)
+  checkURL(job) {
+    if (!job.url) {
+      return (
+        <Link to={this.generateStoryIdLink(job.id)}><strong>{job.title}</strong></Link>
+      );
+    } else {
+      return (
+        <a href={job.url}><strong>{job.title}</strong></a>
+      );
+    }
+  }
+
   simplifyURL(urlStr) {
     let expression = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/im;
     let regex = new RegExp(expression);
@@ -41,20 +54,20 @@ class Jobs extends Component {
   }
 
   render() {
-    // const storyList = jobs.json.map( story => 
-    //   <li className='StoryItem' key={story.id}>
-    //     <a href={story.url}><strong>{story.title}</strong></a> {this.simplifyURL(story.url)}<br/>
-    //     {story.score} points by {story.by} { ' ' }
-    //     {this.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
-    //     <a href='#' onClick={this.hideStory.bind(this, story.id)}>hide</a> { ' ' } | { ' ' }
-    //     <Link to={this.generateStoryIdLink(story.id)}>{story.descendants} comments</Link> <br/>
-    //   </li>
-    // )
+    const storyList = jobs.json.map( job => 
+      <li className='jobItem' key={job.data.id}>
+        {this.checkURL(job.data)} {this.simplifyURL(job.data.url)}<br/>
+        {this.getTimeSinceSubmission(job.data.time)} ago
+      </li>
+    )
 
     return (
-      <ol className="jobs">
-        {/*{storyList}*/}
-      </ol>
+      <div>
+        <ol className="jobs">
+          {storyList}
+        </ol>
+        <button onClick={this.goToNextPage.bind(this)}>More</button>
+      </div>
     );
   }
 }
