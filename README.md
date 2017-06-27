@@ -1,9 +1,9 @@
 ### A hacker news clone created using react, react-router, mobx, firebase
 
 ##### TODO
-+ Look how to do dynamic routing with react routing (working now but need to look into how to pull id from url) to link to comments on a story
 + Get comments on story working
 + Styling...
++ ~~Look how to do dynamic routing with react routing (working now but need to look into how to pull id from url) to link to comments on a story~~
 + ~~Get Ask and Jobs section formatted correctly (they look different than normal story)~~
 + ~~Get comments page working (show all most recent comments)~~
 + ~~Refactor how stores work for each component - top, new, best are all working the exact same way so must be a way to create an abstraction for that~~

@@ -22,12 +22,11 @@ class NewComments {
     axios
       .get(fbURL + 'maxitem.json')
       .then(maxItem => {
-        console.log(maxItem.data);
         for (var i = maxItem.data; i > maxItem.data-numComments; i--) {
           axios
             .get(fbURLItem + i + '.json')
             .then(comment => {
-              if (comment.data.type === 'comment') {
+              if (comment.data && comment.data.type === 'comment') {
                 this.comments.push(comment);
               }
             })
