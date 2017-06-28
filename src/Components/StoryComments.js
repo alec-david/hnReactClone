@@ -57,6 +57,14 @@ class StoryComments extends Component {
     }
   }
 
+  renderHTML(str) {
+    //console.log(str);
+    if (str) {
+      return str.replace(/<[^>]*>/g, '');
+    }
+    return '';
+  }
+
   formatStoryItem(jsonStory) {
     let storyItem;
     if (jsonStory !== undefined) {
@@ -93,9 +101,10 @@ class StoryComments extends Component {
   formatComments(jsonComments) {
     let commentsList;
     if (jsonComments !== undefined) {
-      return jsonComments.map(comment => 
+      console.log(jsonComments);
+      return jsonComments.slice(1).map(comment => 
         <li className='CommentItem' key={comment.data.id}>
-          {comment.data.text}
+          {this.renderHTML(comment.data.text)}
         </li>
       )
     } else {
@@ -112,9 +121,9 @@ class StoryComments extends Component {
       <div className="StoryComments">
         {storyItem}
         <br/>
-        <ul>
+        <ol>
           {commentsList}
-        </ul>
+        </ol>
       </div>
     );
   }
