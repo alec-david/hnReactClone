@@ -58,7 +58,9 @@ class StoryComments extends Component {
   }
 
   renderHTML(str) {
-    //console.log(str);
+    let txt = document.createElement('textarea');
+    txt.innerHTML = str;
+    str = txt.value;
     if (str) {
       return str.replace(/<[^>]*>/g, '');
     }
@@ -102,7 +104,7 @@ class StoryComments extends Component {
     let commentsList;
     if (jsonComments !== undefined) {
       console.log(jsonComments);
-      return jsonComments.slice(1).map(comment => 
+      return jsonComments.map(comment => 
         <li className='CommentItem' key={comment.data.id}>
           {this.renderHTML(comment.data.text)}
         </li>

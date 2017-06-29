@@ -29,7 +29,9 @@ class NewComments extends Component {
   }
 
   renderHTML(str) {
-    //console.log(str);
+    let txt = document.createElement('textarea');
+    txt.innerHTML = str;
+    str = txt.value;
     if (str) {
       return str.replace(/<[^>]*>/g, '');
     }
