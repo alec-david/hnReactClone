@@ -1,8 +1,10 @@
 ### A hacker news clone created using react, react-router, mobx, firebase
 
 ##### TODO
-+ Get comments on story working
-+ Styling...
++ Styling... (indent comments on stories correctly, set up colors)
++ Change stories tabs to work like clicking on story comments where they don't load until clicked on
++ Refactor and clean code
++ ~~Get comments on story working~~
 + ~~Look how to do dynamic routing with react routing (working now but need to look into how to pull id from url) to link to comments on a story~~
 + ~~Get Ask and Jobs section formatted correctly (they look different than normal story)~~
 + ~~Get comments page working (show all most recent comments)~~
@@ -11,4 +13,5 @@
 
 ##### Stuff to look into
 + Redux instead of mobx
++ Go to next page instead of just appending more stories (should be easier since changing how data was pulled down)
 + ~~Try pulling down json of data instead of pulling it down 1 by 1~~

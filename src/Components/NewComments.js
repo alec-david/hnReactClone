@@ -7,7 +7,6 @@ import { newcomments } from '../Stores/NewCommentsStore';
 class NewComments extends Component {
 
   loadMoreComments() {
-    //console.log('asuh');
     newcomments.loadMoreComments();
   }
 

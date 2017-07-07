@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import { Link } from 'react-router-dom';
 import StoryCommentsStore from '../Stores/StoryCommentsStore';
 
 @observer
 class StoryComments extends Component {
+
+  numComments;
   
   constructor() {
     super();
@@ -13,7 +14,7 @@ class StoryComments extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     let id = this.props.match.params.id;
     let x = new StoryCommentsStore(id);
     this.setState( {
@@ -71,6 +72,7 @@ class StoryComments extends Component {
     let storyItem;
     if (jsonStory !== undefined) {
       let story = this.state.storyCommentsStore.jsonStory.data;
+      this.numComments = story.descendants;
       //Check if self post
       if (story.text) {
         storyItem = (
@@ -101,31 +103,60 @@ class StoryComments extends Component {
   }
 
   formatComments(jsonComments) {
-    let commentsList;
     if (jsonComments !== undefined) {
-      console.log(jsonComments);
       return jsonComments.map(comment => 
-        <li className='CommentItem' key={comment.data.id}>
+        <div className='CommentItem' key={comment.data.id} style={{marginLeft: (comment.data.level * 50) +'px', marginTop: 5+'px'}}>
+          {comment.data.by} { ' ' }
+          {this.getTimeSinceSubmission(comment.data.time)} ago { ' ' } <br/>
           {this.renderHTML(comment.data.text)}
-        </li>
+        </div>
       )
     } else {
       return (
-        <li>asuh</li>
+        <div>No Comments</div>
       )
     }
   }
 
+  dfsOrderComments(level, startIndex, oldArr, newArr) {
+    if (startIndex >= oldArr.length) {
+      return newArr;
+    }
+    newArr.push(oldArr[startIndex]);
+    for (var i = startIndex; i < oldArr.length; i++) {
+      if (oldArr[i].data.level === level && oldArr[i].data.parent === oldArr[startIndex].data.id) {
+        newArr = this.dfsOrderComments(level+1, i, oldArr, newArr);
+      }	
+    }
+    return newArr;
+  }
+
+  initOrderComments(oldArr, newArr) {
+    for (var i = 0; i < oldArr.length; i++) {
+      if (oldArr[i].data.level === 0) {
+        newArr = this.dfsOrderComments(1,i,oldArr,newArr);
+      }
+    }
+    return newArr;
+  }
+
   render() {
     const storyItem = this.formatStoryItem(this.state.storyCommentsStore.jsonStory);
-    const commentsList = this.formatComments(this.state.storyCommentsStore.jsonComments);
+    let commentsList = <div>Loading comments....</div>;
+
+    let storyComments = this.state.storyCommentsStore.jsonComments;
+    let orderedStoryComments = [];
+    if (storyComments.length >= this.numComments) {
+      commentsList = this.formatComments(this.initOrderComments(storyComments,orderedStoryComments));
+    }
+
     return (
       <div className="StoryComments">
         {storyItem}
         <br/>
-        <ol>
+        <div>
           {commentsList}
-        </ol>
+        </div>
       </div>
     );
   }
