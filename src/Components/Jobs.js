@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import { jobs } from '../Stores/StoriesStore';
 import { Link  } from 'react-router-dom';
+import StoriesStore from '../Stores/StoriesStore';
 
 @observer
 class Jobs extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      jobs: ''
+    }
+  }
+
+  componentWillMount() {
+    let jobsStore = new StoriesStore('job');
+    this.setState( {
+      jobs: jobsStore
+    })
+  }
+
   goToNextPage() {
-    jobs.getStoriesForNextPage();
+    this.state.jobs.getStoriesForNextPage();
   }
 
   hideStory(id) {
@@ -54,7 +68,7 @@ class Jobs extends Component {
   }
 
   render() {
-    const storyList = jobs.json.map( job => 
+    const storyList = this.state.jobs.json.map( job => 
       <li className='jobItem' key={job.data.id}>
         {this.checkURL(job.data)} {this.simplifyURL(job.data.url)}<br/>
         {this.getTimeSinceSubmission(job.data.time)} ago

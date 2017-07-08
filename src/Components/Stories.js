@@ -1,12 +1,32 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
+import StoriesStore from '../Stores/StoriesStore';
 
 @observer
 class Stories extends Component {
 
-  goToNextPage(topstories) {
-    topstories.getStoriesForNextPage();
+  numStories;
+
+  constructor() {
+    super();
+    this.numStories = 30;
+    this.state = {
+      stories: ''
+    }
+  }
+
+  componentWillMount() {
+    let type = this.props.type;
+    let storiesStore = new StoriesStore(type);
+    this.setState( {
+      stories: storiesStore
+    })
+  }
+
+  goToNextPage(stories) {
+    this.numStories += 30;
+    stories.getStoriesForNextPage();
   }
 
   hideStory(id) {
@@ -53,18 +73,24 @@ class Stories extends Component {
     return '/story/'+id;
   }
 
+  generateAllStories(stories) {
+    if (stories.json.length >= this.numStories) {
+      return stories.json.map( story => 
+        <li className='StoryItem' key={story.data.id}>
+          {this.checkURL(story.data)} {this.simplifyURL(story.data.url)}<br/>
+          {story.data.score} points by {story.data.by} { ' ' }
+          {this.getTimeSinceSubmission(story.data.time)} ago { ' ' } | { ' ' }
+          <a href='#' onClick={this.hideStory.bind(this, story.data.id)}>hide</a> { ' ' } | { ' ' }
+          <Link to={this.generateStoryIdLink(story.data.id)}>{story.data.descendants} comments</Link> <br/>
+        </li>
+      )
+    }
+    return <div>Loading stories....</div>;
+  }
+
   render() {
-    const stories = this.props.stories;
-    // console.log(stories.json);
-    const storyList = stories.json.map( story => 
-      <li className='StoryItem' key={story.data.id}>
-        {this.checkURL(story.data)} {this.simplifyURL(story.data.url)}<br/>
-        {story.data.score} points by {story.data.by} { ' ' }
-        {this.getTimeSinceSubmission(story.data.time)} ago { ' ' } | { ' ' }
-        <a href='#' onClick={this.hideStory.bind(this, story.data.id)}>hide</a> { ' ' } | { ' ' }
-        <Link to={this.generateStoryIdLink(story.data.id)}>{story.data.descendants} comments</Link> <br/>
-      </li>
-    )
+    const stories = this.state.stories;
+    const storyList = this.generateAllStories(stories);
 
     return (
       <div>

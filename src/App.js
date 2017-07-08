@@ -22,13 +22,12 @@ class App extends Component {
         
         <hr/>
 
-        <Route exact path="/" render={()=><Stories stories={topstories} />}/>
-        <Route path="/new" render={()=><Stories stories={newstories} />}/>
-        <Route path="/best" render={()=><Stories stories={beststories} />}/>
-        {/*<Route path="/comments" render={()=><NewComments comments={newcomments} />}/>*/}
+        <Route exact path="/" render={()=><Stories type='top' />}/>
+        <Route path="/new" render={()=><Stories type='new' />}/>
+        <Route path="/best" render={()=><Stories type='best' />}/>
         <Route path="/comments" component={NewComments}/>
-        <Route path="/show" render={()=><Stories stories={show} />}/>
-        <Route path="/ask" render={()=><Stories stories={ask} />}/>
+        <Route path="/show" render={()=><Stories type='show' />}/>
+        <Route path="/ask" render={()=><Stories type='ask' />}/>
         <Route path="/jobs" component={Jobs}/>
         <Route path="/story/:id" component={StoryComments}/>
         {/*<Route path="/job/:id" component={}/>*/}

@@ -16,9 +16,9 @@ class StoryComments extends Component {
 
   componentWillMount() {
     let id = this.props.match.params.id;
-    let x = new StoryCommentsStore(id);
+    let storyComments = new StoryCommentsStore(id);
     this.setState( {
-      storyCommentsStore: x
+      storyCommentsStore: storyComments
     })
   }
 
@@ -140,15 +140,16 @@ class StoryComments extends Component {
     return newArr;
   }
 
+  generateCommentsList(storyComments) {
+    if (storyComments.length >= this.numComments) {
+      return this.formatComments(this.initOrderComments(storyComments,[]));
+    }
+    return <div>Loading comments....</div>;
+  }
+
   render() {
     const storyItem = this.formatStoryItem(this.state.storyCommentsStore.jsonStory);
-    let commentsList = <div>Loading comments....</div>;
-
-    let storyComments = this.state.storyCommentsStore.jsonComments;
-    let orderedStoryComments = [];
-    if (storyComments.length >= this.numComments) {
-      commentsList = this.formatComments(this.initOrderComments(storyComments,orderedStoryComments));
-    }
+    const commentsList = this.generateCommentsList(this.state.storyCommentsStore.jsonComments);
 
     return (
       <div className="StoryComments">

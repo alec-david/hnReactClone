@@ -5,7 +5,7 @@ let numStories = 30;
 let fbURL = 'https://hacker-news.firebaseio.com/v0/';
 let fbURLItem = fbURL + 'item/';
 
-class Stories {
+class StoriesStore {
   pageNum = 0;
   type;
   initStories;
@@ -48,10 +48,12 @@ class Stories {
   }
 }
 
-const topstories = new Stories('top');
-const newstories = new Stories('new');
-const beststories = new Stories('best');
-const ask = new Stories('ask');
-const jobs = new Stories('job');
-const show = new Stories('show');
-export {topstories, newstories, beststories, ask, jobs, show};
+// const topstories = new Stories('top');
+// const newstories = new Stories('new');
+// const beststories = new Stories('best');
+// const ask = new Stories('ask');
+// const jobs = new Stories('job');
+// const show = new Stories('show');
+// export {topstories, newstories, beststories, ask, jobs, show};
+
+export default StoriesStore;

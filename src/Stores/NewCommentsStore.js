@@ -5,7 +5,7 @@ let numComments = 30;
 let fbURL = 'https://hacker-news.firebaseio.com/v0/';
 let fbURLItem = fbURL + 'item/';
 
-class NewComments {
+class NewCommentsStore {
   maxItemId;
 
   @observable comments = [];
@@ -49,6 +49,4 @@ class NewComments {
   }
 }
 
-
-const newcomments = new NewComments();
-export {newcomments};
+export default NewCommentsStore;

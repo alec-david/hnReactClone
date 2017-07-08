@@ -2,7 +2,7 @@
 
 ##### TODO
 + Styling... (indent comments on stories correctly, set up colors)
-+ Change stories tabs to work like clicking on story comments where they don't load until clicked on
++ Change stories tabs to work like clicking on story comments where they don't load until clicked on (change it so it doesn't render individually, just shows up at once)
 + Refactor and clean code
 + ~~Get comments on story working~~
 + ~~Look how to do dynamic routing with react routing (working now but need to look into how to pull id from url) to link to comments on a story~~

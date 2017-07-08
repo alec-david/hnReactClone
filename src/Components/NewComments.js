@@ -1,13 +1,28 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { Link  } from 'react-router-dom';
-import { newcomments } from '../Stores/NewCommentsStore';
+//import { newcomments } from '../Stores/NewCommentsStore';
+import NewCommentsStore from '../Stores/NewCommentsStore';
 
 @observer
 class NewComments extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      newCommentsStore: ''
+    }
+  }
+
+  componentWillMount() {
+    let newComments = new NewCommentsStore();
+    this.setState( {
+      newCommentsStore: newComments
+    })
+  }
+
   loadMoreComments() {
-    newcomments.loadMoreComments();
+    this.state.newCommentsStore.loadMoreComments();
   }
 
   getTimeSinceSubmission(submissionTime) {
@@ -38,7 +53,7 @@ class NewComments extends Component {
   }
 
   render() {
-    const commentList = newcomments.json.map( comment => 
+    const commentList = this.state.newCommentsStore.json.map( comment => 
       <div className='CommentItem' key={comment.data.id}>
         {comment.data.by} { ' ' }
         {this.getTimeSinceSubmission(comment.data.time)} ago { ' ' }
