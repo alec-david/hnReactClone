@@ -2,8 +2,8 @@
 
 ##### TODO
 + Styling... (indent comments on stories correctly, set up colors)
-+ Change stories tabs to work like clicking on story comments where they don't load until clicked on (change it so it doesn't render individually, just shows up at once)
-+ Refactor and clean code
++ Refactor and clean code (pull routes and links from app into own component, remove console logs, redundancies, look at what librares I'm using - might be able to remove some)
++ ~~Change stories tabs to work like clicking on story comments where they don't load until clicked on (change it so it doesn't render individually, just shows up at once)~~
 + ~~Get comments on story working~~
 + ~~Look how to do dynamic routing with react routing (working now but need to look into how to pull id from url) to link to comments on a story~~
 + ~~Get Ask and Jobs section formatted correctly (they look different than normal story)~~

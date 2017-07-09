@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Route, Link  } from 'react-router-dom';
-import { topstories, newstories, beststories, ask, show } from './Stores/StoriesStore';
 
 import Jobs from './Components/Jobs';
 import NewComments from './Components/NewComments';

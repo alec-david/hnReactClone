@@ -81,7 +81,7 @@ class StoryComments extends Component {
           {story.score} points by {story.by} { ' ' }
           {this.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
           <a href='javascript:;'>{story.descendants} comments</a> <br/>
-          <div>{story.text}</div>
+          <div>{this.renderHTML(story.text)}</div>
         </div>
       )
       } else {
