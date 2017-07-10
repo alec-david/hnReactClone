@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import StoryCommentsStore from '../Stores/StoryCommentsStore';
+import StoryCommentItem from './StoryCommentItem';
+import StoryItem from './StoryItem'
 
 @observer
 class StoryComments extends Component {
@@ -22,94 +24,19 @@ class StoryComments extends Component {
     })
   }
 
-  //check if url is blank (if it's an ask post)
-  checkURL(story) {
-    if (!story.url) {
-      return (
-        <a href='javascript:;'><strong>{story.title}</strong></a>
-      );
+  formatStoryItem(story) {
+    if (story !== undefined) {
+      this.numComments = story.data.descendants;
+      return <StoryItem story={story} key={story.data.id}/>
     } else {
-      return (
-        <a href={story.url}><strong>{story.title}</strong></a>
-      );
+      return <div>Loading....</div>
     }
-  }
-
-  simplifyURL(urlStr) {
-    let expression = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/im;
-    let regex = new RegExp(expression);
-    if (urlStr === undefined) {
-      return '';
-    }
-    urlStr = urlStr.match(regex);
-    return '(' + urlStr[1] + ')';
-  }
-
-  getTimeSinceSubmission(submissionTime) {
-    let timeDiff = Math.round(new Date().getTime()/1000.0) - submissionTime;
-
-    let hours = timeDiff/3600;
-    if (hours >= 1 && hours < 2) {
-      return Math.floor(hours) + ' hour';
-    } else if (hours >= 2) {
-      return Math.floor(hours) + ' hours';
-    } else {
-      return Math.round(timeDiff/60) + ' minutes';
-    }
-  }
-
-  renderHTML(str) {
-    let txt = document.createElement('textarea');
-    txt.innerHTML = str;
-    str = txt.value;
-    if (str) {
-      return str.replace(/<[^>]*>/g, '');
-    }
-    return '';
-  }
-
-  formatStoryItem(jsonStory) {
-    let storyItem;
-    if (jsonStory !== undefined) {
-      let story = this.state.storyCommentsStore.jsonStory.data;
-      this.numComments = story.descendants;
-      //Check if self post
-      if (story.text) {
-        storyItem = (
-        <div>
-          {this.checkURL(story)} {this.simplifyURL(story.url)}<br/>
-          {story.score} points by {story.by} { ' ' }
-          {this.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
-          <a href='javascript:;'>{story.descendants} comments</a> <br/>
-          <div>{this.renderHTML(story.text)}</div>
-        </div>
-      )
-      } else {
-        storyItem = (
-        <div>
-          {this.checkURL(story)} {this.simplifyURL(story.url)}<br/>
-          {story.score} points by {story.by} { ' ' }
-          {this.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
-          <a href='javascript:;'>{story.descendants} comments</a> <br/>
-        </div>
-      )
-      }
-    } else {
-      storyItem = (
-        <div>Loading...</div>
-      )
-    }
-    return storyItem;
   }
 
   formatComments(jsonComments) {
     if (jsonComments !== undefined) {
       return jsonComments.map(comment => 
-        <div className='CommentItem' key={comment.data.id} style={{marginLeft: (comment.data.level * 50) +'px', marginTop: 5+'px'}}>
-          {comment.data.by} { ' ' }
-          {this.getTimeSinceSubmission(comment.data.time)} ago { ' ' } <br/>
-          {this.renderHTML(comment.data.text)}
-        </div>
+        <StoryCommentItem comment={comment} key={comment.data.id}/>
       )
     } else {
       return (
@@ -131,7 +58,8 @@ class StoryComments extends Component {
     return newArr;
   }
 
-  initOrderComments(oldArr, newArr) {
+  initOrderComments(oldArr) {
+    let newArr = [];
     for (var i = 0; i < oldArr.length; i++) {
       if (oldArr[i].data.level === 0) {
         newArr = this.dfsOrderComments(1,i,oldArr,newArr);
@@ -142,13 +70,14 @@ class StoryComments extends Component {
 
   generateCommentsList(storyComments) {
     if (storyComments.length >= this.numComments) {
-      return this.formatComments(this.initOrderComments(storyComments,[]));
+      return this.formatComments(this.initOrderComments(storyComments));
     }
     return <div>Loading comments....</div>;
   }
 
   render() {
-    const storyItem = this.formatStoryItem(this.state.storyCommentsStore.jsonStory);
+    const story = this.state.storyCommentsStore.jsonStory;
+    const storyItem = this.formatStoryItem(story);
     const commentsList = this.generateCommentsList(this.state.storyCommentsStore.jsonComments);
 
     return (

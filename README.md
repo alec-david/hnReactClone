@@ -2,7 +2,11 @@
 
 ##### TODO
 + Styling... (indent comments on stories correctly, set up colors)
-+ Refactor and clean code (pull routes and links from app into own component, remove console logs, redundancies, look at what librares I'm using - might be able to remove some)
++ Refactor and clean code (pull routes and links from app into own component, ~~remove console logs, look at what librares I'm using - might be able to remove some, pull story item, comment item into own component,~~ make some type of utlitity class to capture redundancy in getting time since submission, rendering html, etc)
++ Unit test with Jest
++ Improve story comments section - need to refactor and pull reorder logic out
++ ~~Improve new comments section~~
++ ~~Implement hide functionality on stories~~
 + ~~Change stories tabs to work like clicking on story comments where they don't load until clicked on (change it so it doesn't render individually, just shows up at once)~~
 + ~~Get comments on story working~~
 + ~~Look how to do dynamic routing with react routing (working now but need to look into how to pull id from url) to link to comments on a story~~
@@ -13,5 +17,4 @@
 
 ##### Stuff to look into
 + Redux instead of mobx
-+ Go to next page instead of just appending more stories (should be easier since changing how data was pulled down)
 + ~~Try pulling down json of data instead of pulling it down 1 by 1~~
