@@ -28,21 +28,17 @@ class StoryComments extends Component {
     if (story !== undefined) {
       this.numComments = story.data.descendants;
       return <StoryItem story={story} key={story.data.id}/>
-    } else {
-      return <div>Loading....</div>
     }
+    return <div>Loading....</div>
   }
 
   formatComments(jsonComments) {
-    if (jsonComments !== undefined) {
+    if (jsonComments !== undefined && jsonComments.length !== 0) {
       return jsonComments.map(comment => 
         <StoryCommentItem comment={comment} key={comment.data.id}/>
       )
-    } else {
-      return (
-        <div>No Comments</div>
-      )
     }
+    return <div>No Comments</div>
   }
 
   dfsOrderComments(level, startIndex, oldArr, newArr) {
@@ -76,8 +72,7 @@ class StoryComments extends Component {
   }
 
   render() {
-    const story = this.state.storyCommentsStore.jsonStory;
-    const storyItem = this.formatStoryItem(story);
+    const storyItem = this.formatStoryItem(this.state.storyCommentsStore.jsonStory);
     const commentsList = this.generateCommentsList(this.state.storyCommentsStore.jsonComments);
 
     return (
