@@ -8,6 +8,13 @@ class StoryItem extends Component {
     this.props.stories.removeStoryItem(id);
   }
 
+  formatNumComments(numComments) {
+    if (numComments === 0) {
+      return "discuss";
+    }
+    return "" + numComments + " comments"
+  }
+
   checkListOrIndividual() {
     if (this.props.stories) {
       return this.formatListStory();
@@ -20,10 +27,10 @@ class StoryItem extends Component {
     return (
       <li className='StoryItem'>
         {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
-        {story.score} points by {story.by} { ' ' }
+        {story.score} points by <Link to={utils.generateUserLink(story.by)}>{story.by}</Link> { ' ' }
         {utils.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
         <a href='javascript:void(0)' onClick={this.hideStory.bind(this, story.id)}>hide</a> { ' ' } | { ' ' }
-        <Link to={utils.generateStoryIdLink(story.id)}>{story.descendants} comments</Link> <br/>
+        <Link to={utils.generateStoryIdLink(story.id)}>{this.formatNumComments(story.descendants)}</Link> <br/>
       </li>
     )
   }
@@ -42,7 +49,7 @@ class StoryItem extends Component {
         {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
         {story.score} points by {story.by} { ' ' }
         {utils.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
-        <a href='javascript:;'>{story.descendants} comments</a> <br/>
+        <a href='javascript:;'>{this.formatNumComments(story.descendants)}</a> <br/>
         <div>{utils.renderHTML(story.text)}</div>
       </div>
     )
@@ -54,7 +61,7 @@ class StoryItem extends Component {
         {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
         {story.score} points by {story.by} { ' ' }
         {utils.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
-        <a href='javascript:;'>{story.descendants} comments</a> <br/>
+        <a href='javascript:;'>{this.formatNumComments(story.descendants)}</a> <br/>
       </div>
     )
   }

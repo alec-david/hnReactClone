@@ -1,9 +1,9 @@
 import { observable, computed, toJS } from 'mobx';
 import axios from 'axios';
 
-let numStories = 30;
-let fbURL = 'https://hacker-news.firebaseio.com/v0/';
-let fbURLItem = fbURL + 'item/';
+const numStories = 30;
+const fbURL = 'https://hacker-news.firebaseio.com/v0/';
+const fbURLItem = fbURL + 'item/';
 
 class StoriesStore {
   pageNum = 0;

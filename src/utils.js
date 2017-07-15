@@ -31,8 +31,12 @@ export function getTimeSinceSubmission(submissionTime) {
   const hours = timeDiff/3600;
   if (hours >= 1 && hours < 2) {
     return Math.floor(hours) + ' hour';
-  } else if (hours >= 2) {
+  } else if (hours >= 2 && hours < 24) {
     return Math.floor(hours) + ' hours';
+  } else if (hours >= 24 && hours < 48) {
+    return Math.floor(hours/24) + ' day';
+  } else if (hours >= 48) {
+    return Math.floor(hours/24) + ' days';
   } else {
     const minutes = Math.round(timeDiff/60);
     if (minutes === 1) {
@@ -44,6 +48,10 @@ export function getTimeSinceSubmission(submissionTime) {
 
 export function generateStoryIdLink(id) {
   return '/story/'+id;
+}
+
+export function generateUserLink(userName) {
+  return '/user/'+userName;
 }
 
 export function renderHTML(str) {

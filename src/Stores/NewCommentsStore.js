@@ -1,9 +1,9 @@
 import { observable, computed, toJS } from 'mobx';
 import axios from 'axios';
 
-let numComments = 30;
-let fbURL = 'https://hacker-news.firebaseio.com/v0/';
-let fbURLItem = fbURL + 'item/';
+const numComments = 30;
+const fbURL = 'https://hacker-news.firebaseio.com/v0/';
+const fbURLItem = fbURL + 'item/';
 
 class NewCommentsStore {
   maxItemId;

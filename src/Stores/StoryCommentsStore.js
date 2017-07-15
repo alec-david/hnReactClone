@@ -1,7 +1,7 @@
 import { observable, computed, toJS } from 'mobx';
 import axios from 'axios';
 
-let fbURLItem = 'https://hacker-news.firebaseio.com/v0/item/';
+const fbURLItem = 'https://hacker-news.firebaseio.com/v0/item/';
 
 class StoryCommentsStore {
   @observable story;
