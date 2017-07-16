@@ -2,11 +2,10 @@
 
 ##### TODO
 + Styling... (indent comments on stories correctly, set up colors)
-+ Add user page and user item.
 + Unit test with Jest
-+ Improve story comments section - need to refactor and pull reorder logic out
-+ **Maybe** create inidivdual story item components for different types (so component for listStoryItem, askStoryItem, normalStoryItem)
-+ Refactor and clean code ~~(pull routes and links from app into own component, remove console logs, look at what librares I'm using - might be able to remove some, pull story item, comment item into own component, make some type of utlitity class to capture redundancy in getting time since submission, rendering html, etc)~~
++ On NewCommentItem, need to add link to parent story. Right now just looks up to whatever is directly above the comment (so could be another comment) and create another component that is just the storyItem and the comment linked. Maybe try looking into promises in while loops, since having issues with recursive promise chain
++ ~~Add user page and user item.~~
++ ~~Refactor and clean code (pull routes and links from app into own component, remove console logs, look at what librares I'm using - might be able to remove some, pull story item, comment item into own component, make some type of utlitity class to capture redundancy in getting time since submission, rendering html, etc)~~
 + ~~Improve new comments section~~
 + ~~Implement hide functionality on stories~~
 + ~~Change stories tabs to work like clicking on story comments where they don't load until clicked on (change it so it doesn't render individually, just shows up at once)~~

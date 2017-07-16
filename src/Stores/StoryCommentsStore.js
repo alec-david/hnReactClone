@@ -6,6 +6,7 @@ const fbURLItem = 'https://hacker-news.firebaseio.com/v0/item/';
 class StoryCommentsStore {
   @observable story;
   @observable comments = [];
+  @observable orderComments = [];
 
   constructor(id) {
     this.loadStoryItem(id);

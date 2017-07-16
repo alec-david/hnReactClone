@@ -28,11 +28,27 @@ class NewCommentsStore {
             .then(comment => {
               if (comment.data && comment.data.type === 'comment') {
                 this.comments.push(comment);
+                axios
+                  .get(fbURLItem + comment.data.parent + '.json')
+                  .then(story => {
+                    //console.log(this.findStoryTitle(story));
+                  })
               }
             })
         }
         this.maxItemId = maxItem.data-numComments;
       })
+  }
+
+  findStoryTitle(item) {
+    if (item.data.title) {
+      return item.data.title;
+    }
+    axios
+      .get(fbURLItem + item.data.parent + '.json')
+      .then(result => {
+        this.findStoryTitle(result);
+    })
   }
 
   loadMoreComments() {

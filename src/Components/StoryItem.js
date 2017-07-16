@@ -37,17 +37,29 @@ class StoryItem extends Component {
 
   checkIfSelfOrRegularStory() {
     const story = this.props.story.data;
-    if (story.text) {
+    if (story.type === 'job') {
+      return this.formatJobStory(story);
+    } else if (story.text) {
       return this.formatSelfStory(story);
     }
     return this.formatIndiviualStory(story);
+  }
+
+  formatJobStory(story) {
+    return (
+      <div>
+        {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
+        {utils.getTimeSinceSubmission(story.time)} ago { ' ' }<br/>
+        <div>{utils.renderHTML(story.text)}</div>
+      </div>
+    )
   }
 
   formatSelfStory(story) {
     return (
       <div>
         {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
-        {story.score} points by {story.by} { ' ' }
+        {story.score} points by <Link to={utils.generateUserLink(story.by)}>{story.by}</Link> { ' ' }
         {utils.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
         <a href='javascript:;'>{this.formatNumComments(story.descendants)}</a> <br/>
         <div>{utils.renderHTML(story.text)}</div>
@@ -59,7 +71,7 @@ class StoryItem extends Component {
     return (
       <div>
         {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
-        {story.score} points by {story.by} { ' ' }
+        {story.score} points by <Link to={utils.generateUserLink(story.by)}>{story.by}</Link> { ' ' }
         {utils.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
         <a href='javascript:;'>{this.formatNumComments(story.descendants)}</a> <br/>
       </div>
