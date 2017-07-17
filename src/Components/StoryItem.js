@@ -17,20 +17,38 @@ class StoryItem extends Component {
 
   checkListOrIndividual() {
     if (this.props.stories) {
-      return this.formatListStory();
+      return this.checkIfListStoryOrJob();
     }
     return this.checkIfSelfOrRegularStory();
   }
 
-  formatListStory() {
+  checkIfListStoryOrJob() {
     const story = this.props.story.data;
+    if (story.descendants === undefined) {
+      return this.formatListJob(story);
+    }
+    return this.formatListStory(story);
+  }
+
+  formatListStory(story) {
     return (
       <li className='StoryItem'>
         {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
         {story.score} points by <Link to={utils.generateUserLink(story.by)}>{story.by}</Link> { ' ' }
         {utils.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
-        <a href='javascript:void(0)' onClick={this.hideStory.bind(this, story.id)}>hide</a> { ' ' } | { ' ' }
+        <a href='javascript:;' onClick={this.hideStory.bind(this, story.id)}>hide</a> { ' ' } | { ' ' }
         <Link to={utils.generateStoryIdLink(story.id)}>{this.formatNumComments(story.descendants)}</Link> <br/>
+      </li>
+    )
+  }
+
+  formatListJob(story) {
+    return (
+      <li className='StoryItem'>
+        {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
+        {story.score} points by <Link to={utils.generateUserLink(story.by)}>{story.by}</Link> { ' ' }
+        {utils.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
+        <a href='javascript:void(0)' onClick={this.hideStory.bind(this, story.id)}>hide</a> { ' ' }<br/>
       </li>
     )
   }

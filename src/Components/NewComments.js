@@ -25,9 +25,9 @@ class NewComments extends Component {
   }
 
   render() {
-    const commentList = this.state.newCommentsStore.json.map( comment => 
-      <NewCommentItem comment={comment} key={comment.data.id}/>
-    )
+    const commentList = this.state.newCommentsStore.json.map( comment => {
+      return <NewCommentItem comment={comment} key={comment.data.id}/>
+    })
 
     return (
       <div>

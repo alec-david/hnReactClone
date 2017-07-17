@@ -27,11 +27,15 @@ class NewCommentsStore {
             .get(fbURLItem + i + '.json')
             .then(comment => {
               if (comment.data && comment.data.type === 'comment') {
-                this.comments.push(comment);
+                //console.log(comment);
                 axios
                   .get(fbURLItem + comment.data.parent + '.json')
                   .then(story => {
-                    //console.log(this.findStoryTitle(story));
+                    this.findStoryTitle(story).then(result => {
+                      comment.data.parentStory = result;
+                      //comment.data.parentStoryId = result.id;
+                      this.comments.push(comment);
+                    });
                   })
               }
             })
@@ -41,13 +45,20 @@ class NewCommentsStore {
   }
 
   findStoryTitle(item) {
-    if (item.data.title) {
-      return item.data.title;
+    if (item.data) {
+      return new Promise(resolve => {
+        if (item.data.title) {
+          resolve(item.data);
+        }
+        axios
+          .get(fbURLItem + item.data.parent + '.json')
+          .then(result => {
+            resolve(this.findStoryTitle(result));
+        })
+      })
     }
-    axios
-      .get(fbURLItem + item.data.parent + '.json')
-      .then(result => {
-        this.findStoryTitle(result);
+    return new Promise(resolve => {
+      resolve(null);
     })
   }
 

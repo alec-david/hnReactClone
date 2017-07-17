@@ -18,7 +18,6 @@ const routes = (
     <Route path="/jobs" component={Jobs}/>
     <Route path="/story/:id" component={StoryComments}/>
     <Route path="/user/:username" component={User}/>
-    {/*<Route path="/job/:id" component={}/>*/}
   </div>
 )
 

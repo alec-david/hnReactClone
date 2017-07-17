@@ -3,7 +3,8 @@
 ##### TODO
 + Styling... (indent comments on stories correctly, set up colors)
 + Unit test with Jest
-+ On NewCommentItem, need to add link to parent story. Right now just looks up to whatever is directly above the comment (so could be another comment) and create another component that is just the storyItem and the comment linked. Maybe try looking into promises in while loops, since having issues with recursive promise chain
++ ~~On NewCommentItem, need to add link to parent story. Right now just looks up to whatever is directly above the comment (so could be another comment) and link that comment to the story it was posted on~~
++ ~~Bug => If a job is in a story list (like in best), you can click into comments even if the job links to another website.~~
 + ~~Add user page and user item.~~
 + ~~Refactor and clean code (pull routes and links from app into own component, remove console logs, look at what librares I'm using - might be able to remove some, pull story item, comment item into own component, make some type of utlitity class to capture redundancy in getting time since submission, rendering html, etc)~~
 + ~~Improve new comments section~~
@@ -19,3 +20,6 @@
 ##### Stuff to look into
 + Redux instead of mobx
 + ~~Try pulling down json of data instead of pulling it down 1 by 1~~
+
+##### Bugs
++ ~~If a job is in a story list (like in best), you can click into comments even if the job links to another website.~~
