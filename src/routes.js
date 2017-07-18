@@ -7,8 +7,13 @@ import Stories from './Components/Stories';
 import StoryComments from './Components/StoryComments';
 import User from './Components/User';
 
+const style = {
+  backgroundColor: '#cfd2d6',
+  paddingLeft: '200px'
+}
+
 const routes = (
-  <div>
+  <div className="Routes" style={style}>
     <Route exact path="/" render={()=><Stories type='top' />}/>
     <Route path="/new" render={()=><Stories type='new' />}/>
     <Route path="/best" render={()=><Stories type='best' />}/>

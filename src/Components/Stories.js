@@ -43,7 +43,7 @@ class Stories extends Component {
     const storyList = this.generateAllStories();
 
     return (
-      <div>
+      <div className="Stories">
         <ol>
           {storyList}
         </ol>
