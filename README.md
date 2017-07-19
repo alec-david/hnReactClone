@@ -1,8 +1,7 @@
 ### A hacker news clone created using react, react-router, mobx, axios
 
 ##### TODO
-+ Styling... (indent comments on stories correctly, set up colors)
-+ Unit test with Jest
++ Styling... (indent comments on stories correctly, set up colors) - mostly done - want to pull styles into own file and pull into components i use them in (like utils), want to add left and right padding to whole app, add underline when hovering over links, grey out clicked on links
 + ~~On NewCommentItem, need to add link to parent story. Right now just looks up to whatever is directly above the comment (so could be another comment) and link that comment to the story it was posted on~~
 + ~~Bug => If a job is in a story list (like in best), you can click into comments even if the job links to another website.~~
 + ~~Add user page and user item.~~
@@ -19,7 +18,9 @@
 
 ##### Stuff to look into
 + Redux instead of mobx
++ Unit test with Jest
 + ~~Try pulling down json of data instead of pulling it down 1 by 1~~
 
 ##### Bugs
++ When trying to load more new comments, promise error
 + ~~If a job is in a story list (like in best), you can click into comments even if the job links to another website.~~

@@ -41,7 +41,6 @@ class Stories extends Component {
 
   render() {
     const storyList = this.generateAllStories();
-
     return (
       <div className="Stories">
         <ol>

@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as utils from '../utils';
 
+const styleStory = {
+    color: '#646464'
+  };
+const styleStoryLink = {
+    color: '#646464',
+    textDecoration: 'none'
+};
+
 class StoryItem extends Component {
 
   hideStory(id) {
@@ -32,23 +40,23 @@ class StoryItem extends Component {
 
   formatListStory(story) {
     return (
-      <li className='StoryItem'>
+      <li className='StoryItem' style={styleStory}>
         {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
-        {story.score} points by <Link to={utils.generateUserLink(story.by)}>{story.by}</Link> { ' ' }
+        {story.score} points by <Link to={utils.generateUserLink(story.by)} style={styleStoryLink}>{story.by}</Link> { ' ' }
         {utils.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
-        <a href='javascript:;' onClick={this.hideStory.bind(this, story.id)}>hide</a> { ' ' } | { ' ' }
-        <Link to={utils.generateStoryIdLink(story.id)}>{this.formatNumComments(story.descendants)}</Link> <br/>
+        <a href='javascript:;' onClick={this.hideStory.bind(this, story.id)} style={styleStoryLink}>hide</a> { ' ' } | { ' ' }
+        <Link to={utils.generateStoryIdLink(story.id)} style={styleStoryLink}>{this.formatNumComments(story.descendants)}</Link> <br/>
       </li>
     )
   }
 
   formatListJob(story) {
     return (
-      <li className='StoryItem'>
+      <li className='StoryItem' style={styleStory}>
         {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
-        {story.score} points by <Link to={utils.generateUserLink(story.by)}>{story.by}</Link> { ' ' }
+        {story.score} points by <Link to={utils.generateUserLink(story.by)} style={styleStoryLink}>{story.by}</Link> { ' ' }
         {utils.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
-        <a href='javascript:void(0)' onClick={this.hideStory.bind(this, story.id)}>hide</a> { ' ' }<br/>
+        <a href='javascript:void(0)' onClick={this.hideStory.bind(this, story.id)} style={styleStoryLink}>hide</a> { ' ' }<br/>
       </li>
     )
   }
@@ -65,7 +73,7 @@ class StoryItem extends Component {
 
   formatJobStory(story) {
     return (
-      <div>
+      <div style={styleStory}>
         {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
         {utils.getTimeSinceSubmission(story.time)} ago { ' ' }<br/>
         <div>{utils.renderHTML(story.text)}</div>
@@ -75,11 +83,11 @@ class StoryItem extends Component {
 
   formatSelfStory(story) {
     return (
-      <div>
+      <div style={styleStory}>
         {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
-        {story.score} points by <Link to={utils.generateUserLink(story.by)}>{story.by}</Link> { ' ' }
+        {story.score} points by <Link to={utils.generateUserLink(story.by)} style={styleStoryLink}>{story.by}</Link> { ' ' }
         {utils.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
-        <a href='javascript:;'>{this.formatNumComments(story.descendants)}</a> <br/>
+        <a href='javascript:;' style={styleStoryLink}>{this.formatNumComments(story.descendants)}</a> <br/>
         <div>{utils.renderHTML(story.text)}</div>
       </div>
     )
@@ -87,18 +95,17 @@ class StoryItem extends Component {
 
   formatIndiviualStory(story) {
     return (
-      <div>
+      <div style={styleStory}>
         {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
-        {story.score} points by <Link to={utils.generateUserLink(story.by)}>{story.by}</Link> { ' ' }
+        {story.score} points by <Link to={utils.generateUserLink(story.by)} style={styleStoryLink}>{story.by}</Link> { ' ' }
         {utils.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
-        <a href='javascript:;'>{this.formatNumComments(story.descendants)}</a> <br/>
+        <a href='javascript:;' style={styleStoryLink}>{this.formatNumComments(story.descendants)}</a> <br/>
       </div>
     )
   }
 
   render() {
     const story = this.checkListOrIndividual();
-
     return (
       <div>
         {story}

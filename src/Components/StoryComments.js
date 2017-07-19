@@ -64,16 +64,19 @@ class StoryComments extends Component {
     return newArr;
   }
 
-  generateCommentsList(storyComments) {
+  generateCommentsList(storyComments, story) {
+    console.log(story);
     if (storyComments.length >= this.numComments) {
       return this.formatComments(this.initOrderComments(storyComments));
+    } else if (story && story.data.type === 'job') {
+      return <div></div>
     }
     return <div>Loading comments....</div>;
   }
 
   render() {
     const storyItem = this.formatStoryItem(this.state.storyCommentsStore.jsonStory);
-    const commentsList = this.generateCommentsList(this.state.storyCommentsStore.jsonComments);
+    const commentsList = this.generateCommentsList(this.state.storyCommentsStore.jsonComments, this.state.storyCommentsStore.jsonStory);
 
     return (
       <div className="StoryComments">

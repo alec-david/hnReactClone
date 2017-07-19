@@ -8,8 +8,9 @@ import StoryComments from './Components/StoryComments';
 import User from './Components/User';
 
 const style = {
-  backgroundColor: '#cfd2d6',
-  paddingLeft: '200px'
+  backgroundColor: '#F6F5F0',
+  paddingLeft: '10px',
+  paddingTop: '10px'
 }
 
 const routes = (
