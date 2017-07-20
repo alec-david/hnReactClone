@@ -65,7 +65,6 @@ class StoryComments extends Component {
   }
 
   generateCommentsList(storyComments, story) {
-    console.log(story);
     if (storyComments.length >= this.numComments) {
       return this.formatComments(this.initOrderComments(storyComments));
     } else if (story && story.data.type === 'job') {

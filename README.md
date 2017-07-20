@@ -22,5 +22,5 @@
 + ~~Try pulling down json of data instead of pulling it down 1 by 1~~
 
 ##### Bugs
-+ When trying to load more new comments, promise error
++ ~~When trying to load more new comments, promise error~~
 + ~~If a job is in a story list (like in best), you can click into comments even if the job links to another website.~~

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as utils from '../utils';
+import * as styles from '../styles';
 
 class UserItem extends Component {
 
@@ -15,7 +16,7 @@ class UserItem extends Component {
     const user = this.props.user;
     return (
       <div>
-        User: { ' ' } <Link to={utils.generateUserLink(user.id)}>{user.id}</Link>
+        User: { ' ' } <Link to={utils.generateUserLink(user.id)} style={styles.styleLink}>{user.id}</Link>
         <br/><br/>
         Created: { ' ' } {utils.getTimeSinceSubmission(user.created)} ago
         <br/><br/>

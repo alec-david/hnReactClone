@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as utils from '../utils';
-
-const styleStory = {
-    color: '#646464'
-  };
-const styleStoryLink = {
-    color: '#646464',
-    textDecoration: 'none'
-};
+import * as styles from '../styles';
 
 class StoryItem extends Component {
 
@@ -40,23 +33,23 @@ class StoryItem extends Component {
 
   formatListStory(story) {
     return (
-      <li className='StoryItem' style={styleStory}>
+      <li className='StoryItem' style={styles.styleStory}>
         {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
-        {story.score} points by <Link to={utils.generateUserLink(story.by)} style={styleStoryLink}>{story.by}</Link> { ' ' }
+        {story.score} points by <Link to={utils.generateUserLink(story.by)} style={styles.styleLink}>{story.by}</Link> { ' ' }
         {utils.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
-        <a href='javascript:;' onClick={this.hideStory.bind(this, story.id)} style={styleStoryLink}>hide</a> { ' ' } | { ' ' }
-        <Link to={utils.generateStoryIdLink(story.id)} style={styleStoryLink}>{this.formatNumComments(story.descendants)}</Link> <br/>
+        <a href='javascript:;' onClick={this.hideStory.bind(this, story.id)} style={styles.styleLink}>hide</a> { ' ' } | { ' ' }
+        <Link to={utils.generateStoryIdLink(story.id)} style={styles.styleLink}>{this.formatNumComments(story.descendants)}</Link> <br/>
       </li>
     )
   }
 
   formatListJob(story) {
     return (
-      <li className='StoryItem' style={styleStory}>
+      <li className='StoryItem' style={styles.styleStory}>
         {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
-        {story.score} points by <Link to={utils.generateUserLink(story.by)} style={styleStoryLink}>{story.by}</Link> { ' ' }
+        {story.score} points by <Link to={utils.generateUserLink(story.by)} style={styles.styleLink}>{story.by}</Link> { ' ' }
         {utils.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
-        <a href='javascript:void(0)' onClick={this.hideStory.bind(this, story.id)} style={styleStoryLink}>hide</a> { ' ' }<br/>
+        <a href='javascript:void(0)' onClick={this.hideStory.bind(this, story.id)} style={styles.styleLink}>hide</a> { ' ' }<br/>
       </li>
     )
   }
@@ -73,7 +66,7 @@ class StoryItem extends Component {
 
   formatJobStory(story) {
     return (
-      <div style={styleStory}>
+      <div style={styles.styleStory}>
         {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
         {utils.getTimeSinceSubmission(story.time)} ago { ' ' }<br/>
         <div>{utils.renderHTML(story.text)}</div>
@@ -83,11 +76,11 @@ class StoryItem extends Component {
 
   formatSelfStory(story) {
     return (
-      <div style={styleStory}>
+      <div style={styles.styleStory}>
         {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
-        {story.score} points by <Link to={utils.generateUserLink(story.by)} style={styleStoryLink}>{story.by}</Link> { ' ' }
+        {story.score} points by <Link to={utils.generateUserLink(story.by)} style={styles.styleLink}>{story.by}</Link> { ' ' }
         {utils.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
-        <a href='javascript:;' style={styleStoryLink}>{this.formatNumComments(story.descendants)}</a> <br/>
+        <a href='javascript:;' style={styles.styleLink}>{this.formatNumComments(story.descendants)}</a> <br/>
         <div>{utils.renderHTML(story.text)}</div>
       </div>
     )
@@ -95,11 +88,11 @@ class StoryItem extends Component {
 
   formatIndiviualStory(story) {
     return (
-      <div style={styleStory}>
+      <div style={styles.styleStory}>
         {utils.checkURL(story)} {utils.simplifyURL(story.url)}<br/>
-        {story.score} points by <Link to={utils.generateUserLink(story.by)} style={styleStoryLink}>{story.by}</Link> { ' ' }
+        {story.score} points by <Link to={utils.generateUserLink(story.by)} style={styles.styleLink}>{story.by}</Link> { ' ' }
         {utils.getTimeSinceSubmission(story.time)} ago { ' ' } | { ' ' }
-        <a href='javascript:;' style={styleStoryLink}>{this.formatNumComments(story.descendants)}</a> <br/>
+        <a href='javascript:;' style={styles.styleLink}>{this.formatNumComments(story.descendants)}</a> <br/>
       </div>
     )
   }

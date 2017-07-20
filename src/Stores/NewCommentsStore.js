@@ -27,13 +27,11 @@ class NewCommentsStore {
             .get(fbURLItem + i + '.json')
             .then(comment => {
               if (comment.data && comment.data.type === 'comment') {
-                //console.log(comment);
                 axios
                   .get(fbURLItem + comment.data.parent + '.json')
                   .then(story => {
                     this.findStoryTitle(story).then(result => {
                       comment.data.parentStory = result;
-                      //comment.data.parentStoryId = result.id;
                       this.comments.push(comment);
                     });
                   })
@@ -67,8 +65,16 @@ class NewCommentsStore {
       axios
         .get(fbURLItem + i + '.json')
         .then(comment => {
-          if (comment.data.type === 'comment') {
-            this.comments.push(comment);
+          if (comment.data && comment.data.type === 'comment') {
+            axios
+              .get(fbURLItem + comment.data.parent + '.json')
+              .then(story => {
+                this.findStoryTitle(story).then(result => {
+                  comment.data.parentStory = result;
+                  this.comments.push(comment);
+                });
+              })
+            //this.comments.push(comment);
           }
         })
     }

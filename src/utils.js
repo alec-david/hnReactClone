@@ -1,20 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import * as styles from './styles';
 
 /*contains functions used across all of the story and comment item components*/
 
 export function checkURL(story) {
-  const styleStory = {
-    textDecoration: 'none',
-    color: 'black'
-  }
   if (!story.url) {
     return (
-      <Link to={this.generateStoryIdLink(story.id)} style={styleStory}><strong>{story.title}</strong></Link>
+      <Link to={this.generateStoryIdLink(story.id)} style={styles.styleStoryTitle}><strong>{story.title}</strong></Link>
     );
   } else {
     return (
-      <a href={story.url} style={styleStory}><strong>{story.title}</strong></a>
+      <a href={story.url} style={styles.styleStoryTitle}><strong>{story.title}</strong></a>
     );
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route  } from 'react-router-dom';
+import * as styles from './styles';
 
 import Jobs from './Components/Jobs';
 import NewComments from './Components/NewComments';
@@ -7,14 +8,8 @@ import Stories from './Components/Stories';
 import StoryComments from './Components/StoryComments';
 import User from './Components/User';
 
-const style = {
-  backgroundColor: '#F6F5F0',
-  paddingLeft: '10px',
-  paddingTop: '10px'
-}
-
 const routes = (
-  <div className="Routes" style={style}>
+  <div className="Routes" style={styles.styleApp}>
     <Route exact path="/" render={()=><Stories type='top' />}/>
     <Route path="/new" render={()=><Stories type='new' />}/>
     <Route path="/best" render={()=><Stories type='best' />}/>
