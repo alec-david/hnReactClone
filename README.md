@@ -4,9 +4,9 @@ A clone of [Hacker News](https://news.ycombinator.com/) using the [Offical HN AP
 
 ![Home Page](https://github.com/alec-david/hnReactClone/blob/master/imgs/HNReactAskStories.PNG "Home Page")
 
-![Ask Page](https://github.com/alec-david/hnReactClone/blob/master/imgs/HNReactAskStories.png?raw=true "Ask Page")
+![Ask Page](https://github.com/alec-david/hnReactClone/blob/master/imgs/HNReactAskStories.PNG "Ask Page")
 
-![Story Comments](https://github.com/alec-david/hnReactClone/blob/master/imgs/HNReactStoryComments.png?raw=true "Story Comments")
+![Story Comments](https://github.com/alec-david/hnReactClone/blob/master/imgs/HNReactStoryComments.PNG "Story Comments")
 
 View a working version here: abcdef
 
