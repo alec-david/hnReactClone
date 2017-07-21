@@ -2,7 +2,7 @@
 
 A clone of [Hacker News](https://news.ycombinator.com/) using the [Offical HN API](https://github.com/HackerNews/API) built using [React](https://facebook.github.io/react/), [React-Router](https://github.com/ReactTraining/react-router), and [Axios](https://github.com/mzabriskie/axios)
 
-![Home Page](https://github.com/alec-david/hnReactClone/blob/master/imgs/HNReactAskStories.PNG "Home Page")
+![Home Page](https://github.com/alec-david/hnReactClone/blob/master/imgs/HNReactBestStories.PNG "Home Page")
 
 ![Ask Page](https://github.com/alec-david/hnReactClone/blob/master/imgs/HNReactAskStories.PNG "Ask Page")
 
