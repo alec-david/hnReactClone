@@ -36,7 +36,6 @@ export const styleHeaderText = {
   textDecoration: 'none',
   color: 'black'
 }
-
 export const styleWebPadding = {
   paddingLeft:'200px',
   paddingRight:'200px',
