@@ -1,6 +1,8 @@
 {
   "name": "hn-react",
   "version": "0.1.0",
+  "author": "Alec David",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
