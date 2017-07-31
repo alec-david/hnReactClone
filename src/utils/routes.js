@@ -2,11 +2,11 @@ import React from 'react';
 import { Route  } from 'react-router-dom';
 import * as styles from './styles';
 
-import Jobs from './Components/Jobs';
-import NewComments from './Components/NewComments';
-import Stories from './Components/Stories';
-import StoryComments from './Components/StoryComments';
-import User from './Components/User';
+import Jobs from '../components/Jobs';
+import NewComments from '../components/NewComments';
+import Stories from '../components/Stories';
+import StoryComments from '../components/StoryComments';
+import User from '../components/User';
 
 const routes = (
   <div className="Routes" style={styles.styleApp}>

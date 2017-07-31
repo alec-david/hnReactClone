@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Header from './Components/Header';
-import routes from './routes';
-import * as styles from './styles';
+import Header from './components/Header';
+import routes from './utils/routes';
+import * as styles from './utils/styles';
 
 class App extends Component {
 

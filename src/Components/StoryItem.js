@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import * as utils from '../utils';
-import * as styles from '../styles';
+import * as utils from '../utils/utils';
+import * as styles from '../utils/styles';
 
 class StoryItem extends Component {
 

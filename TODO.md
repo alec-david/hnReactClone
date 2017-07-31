@@ -1,4 +1,6 @@
 ##### TODO
++ React Native for Mobile.
++ For stories with greater than 400? (not sure what a good number is) comments, only load the first 400 and then have a load more comments button
 + ~~Styling... (indent comments on stories correctly, set up colors) - mostly done - want to pull styles into own file and pull into components i use them in (like utils), want to add left and right padding to whole app, add underline when hovering over links, grey out clicked on links~~
 + ~~On NewCommentItem, need to add link to parent story. Right now just looks up to whatever is directly above the comment (so could be another comment) and link that comment to the story it was posted on~~
 + ~~Bug => If a job is in a story list (like in best), you can click into comments even if the job links to another website.~~

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import StoryCommentsStore from '../Stores/StoryCommentsStore';
+import StoryCommentsStore from '../stores/StoryCommentsStore';
 import StoryCommentItem from './StoryCommentItem';
 import StoryItem from './StoryItem'
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import StoriesStore from '../Stores/StoriesStore';
-import * as utils from '../utils';
+import StoriesStore from '../stores/StoriesStore';
+import * as utils from '../utils/utils';
 
 @observer
 class Jobs extends Component {

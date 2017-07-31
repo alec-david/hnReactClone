@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import StoryItem from './StoryItem';
-import StoriesStore from '../Stores/StoriesStore';
+import StoriesStore from '../stores/StoriesStore';
 
 @observer
 class Stories extends Component {

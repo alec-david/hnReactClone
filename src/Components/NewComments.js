@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import NewCommentsStore from '../Stores/NewCommentsStore';
+import NewCommentsStore from '../stores/NewCommentsStore';
 import NewCommentItem from './NewCommentItem'
 
 @observer
