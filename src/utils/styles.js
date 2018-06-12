@@ -1,43 +1,44 @@
 export const styleApp = {
-  backgroundColor: '#F6F5F0',
-  paddingLeft: '10px',
-  paddingTop: '10px'
-}
+  backgroundColor: "#F6F5F0",
+  paddingLeft: "10px",
+  paddingTop: "10px",
+  fontFamily: "Verdana, sans-serif"
+};
 export const styleStory = {
-  color: '#646464',
-  fontSize: '14px',
-  paddingBottom: '5px'
+  color: "#646464",
+  fontSize: "14px",
+  paddingBottom: "5px"
 };
 export const styleLink = {
-  color: '#646464',
-  textDecoration: 'none'
+  color: "#646464",
+  textDecoration: "none"
 };
 export const styleStoryTitle = {
-  textDecoration: 'none',
-  color: 'black',
-  fontSize: '15px'
+  textDecoration: "none",
+  color: "black",
+  fontSize: "15px"
 };
 export const styleComment = {
-  color: '#646464',
-  paddingTop: '10px',
-  fontSize: '14px'
-}
+  color: "#646464",
+  paddingTop: "10px",
+  fontSize: "14px"
+};
 export const styleCommentText = {
-  color: 'black',
-  fontSize: '16px',
-}
+  color: "black",
+  fontSize: "16px"
+};
 export const styleHeader = {
-  backgroundColor: '#FD6803',
-  paddingTop: '5px',
-  paddingBottom: '5px',
-  paddingLeft: '10px',
+  backgroundColor: "#FD6803",
+  paddingTop: "5px",
+  paddingBottom: "5px",
+  paddingLeft: "10px"
 };
 export const styleHeaderText = {
-  textDecoration: 'none',
-  color: 'black'
-}
+  textDecoration: "none",
+  color: "black"
+};
 export const styleWebPadding = {
-  paddingLeft:'200px',
-  paddingRight:'200px',
-  paddingBottom:'25px'
-}
+  paddingLeft: "200px",
+  paddingRight: "200px",
+  paddingBottom: "25px"
+};
